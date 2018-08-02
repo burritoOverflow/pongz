@@ -11,13 +11,16 @@ class Ball : Tickable
   private:
 
     sf::CircleShape shape;
-    int velocityX;
-    int velocityY;
-
+    float velocityX;
+    float velocityY;
 
   public:
 
     Ball();
+    float getTop();
+    float getBottom();
+    float getLeft();
+    float getRight();
 
     // Tickable
     void tick(int frame, sf::Event& event, sf::RenderWindow& window);
