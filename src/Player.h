@@ -4,8 +4,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "./Tickable.h"
+#include "./Object.h"
 
-class Player : Tickable
+class Player : public Tickable, public Object
 {
 
   private:
@@ -18,7 +19,10 @@ class Player : Tickable
     Player(bool isComputer);
 
     // Tickable
-    void tick(int frame, sf::Event& event, sf::RenderWindow& window);
+    void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window);
+    
+    // Object
+    std::string toString();
 
 };
 

@@ -1,8 +1,11 @@
 #include <iostream>
+#include <vector>
 
 #include <SFML/Graphics.hpp>
 
 #include "./Ball.h"
+#include "./Game.h"
+#include "./Player.h"
 
 Ball::Ball()
 {
@@ -13,7 +16,7 @@ Ball::Ball()
   this->m_velocityY = 0.05f;
 }
 
-void Ball::tick(int frame, sf::Event& event, sf::RenderWindow& window)
+void Ball::tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window)
 {
 
   sf::Vector2f position = this->m_shape.getPosition();
@@ -23,6 +26,10 @@ void Ball::tick(int frame, sf::Event& event, sf::RenderWindow& window)
   float right = rect.left + rect.width;
   float top = position.y;
   float bottom = position.y + rect.height;
+
+  Game* game = (Game*) pGame;
+  std::vector<Player*> players;
+  game->getPlayers(players);
 
   if (left < 0.0f || right > WINDOW_WIDTH)
   {
@@ -38,4 +45,9 @@ void Ball::tick(int frame, sf::Event& event, sf::RenderWindow& window)
 
   window.draw(this->m_shape);
 
+}
+
+std::string Ball::toString()
+{
+  return "Ball";
 }

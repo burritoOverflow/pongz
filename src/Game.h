@@ -1,13 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <iostream>
 #include <vector>
 
 #include <SFML/Graphics.hpp>
 
 #include "./Tickable.h"
+#include "./Player.h"
+#include "./Object.h"
 
-class Game : Tickable
+class Game : public Tickable, public Object
 {
 
   private:
@@ -19,9 +22,13 @@ class Game : Tickable
     Game();
     ~Game();
     void add(Tickable* tickable);
+    void getPlayers(std::vector<Player*>& players);
 
     // Tickable
-    void tick(int frame, sf::Event& event, sf::RenderWindow& window); 
+    void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window); 
+
+    // Object
+    std::string toString();
 
 };
 

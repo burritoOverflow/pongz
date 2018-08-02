@@ -20,7 +20,7 @@ Player::Player(bool isComputer)
   }
 }
 
-void Player::tick(int frame, sf::Event& event, sf::RenderWindow& window)
+void Player::tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window)
 {
 
   sf::Vector2f position = this->m_shape.getPosition();
@@ -52,4 +52,9 @@ void Player::tick(int frame, sf::Event& event, sf::RenderWindow& window)
 
   window.draw(this->m_shape);
 
+}
+
+std::string Player::toString()
+{
+  return "Player";
 }

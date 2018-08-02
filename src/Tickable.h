@@ -8,7 +8,7 @@ class Tickable
 
   public:
 
-    virtual void tick(int frame, sf::Event& event, sf::RenderWindow& window) = 0;
+    virtual void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window) = 0;
 
 };
 

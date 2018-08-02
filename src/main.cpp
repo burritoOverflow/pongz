@@ -17,6 +17,8 @@ int main()
     game.add((Tickable*) new Player(false));
     game.add((Tickable*) new Player(true));
 
+    void *pGame = &game;
+
     int frame = 0;
 
     while (window.isOpen())
@@ -39,7 +41,7 @@ int main()
         }
 
         window.clear(sf::Color::White);
-        game.tick(frame++, event, window);
+        game.tick(pGame, frame++, event, window);
         window.display();
     }
 
