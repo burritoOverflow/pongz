@@ -25,6 +25,21 @@ void Game::add(Tickable* tickable)
   this->m_tickables.push_back(tickable);
 }
 
+Ball* Game::getBall()
+{
+  for (Tickable* tickable : this->m_tickables)
+  {
+    if (Object* obj = dynamic_cast<Object*>(tickable))
+    {
+      if (obj->toString() == "Ball")
+      {
+        return (Ball*) obj;
+      }
+    }
+  }
+  return NULL;
+}
+
 void Game::getPlayers(std::vector<Player*>& players)
 {
   players.clear();

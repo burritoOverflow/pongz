@@ -23,6 +23,7 @@ class Game : public Tickable, public Object
     Game();
     ~Game();
     void add(Tickable* tickable);
+    Ball* getBall();
     void getPlayers(std::vector<Player*>& players);
 
     // Tickable

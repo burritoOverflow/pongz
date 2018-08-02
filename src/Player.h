@@ -13,6 +13,7 @@ class Player : public Tickable, public Object
 
     sf::RectangleShape m_shape;
     bool m_isComputer;
+    float m_velocityY;
 
   public:
 
@@ -22,6 +23,8 @@ class Player : public Tickable, public Object
     float getRight();
     float getTop();
     float getBottom();
+    float getCenterY();
+    float getVelocityY();
 
     // Tickable
     void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window);

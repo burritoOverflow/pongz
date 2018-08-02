@@ -12,8 +12,8 @@ Ball::Ball()
   this->m_shape.setRadius(20);
   this->m_shape.setPosition(WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
   this->m_shape.setFillColor(sf::Color::Black);
-  this->m_velocityX = 0.08f;
-  this->m_velocityY = 0.05f;
+  this->m_velocityX = 0.2f;
+  this->m_velocityY = 0.09f;
 }
 
 float Ball::getLeft()
@@ -40,6 +40,11 @@ float Ball::getBottom()
   sf::Vector2f position = this->m_shape.getPosition();
   sf::FloatRect rect = this->m_shape.getGlobalBounds();
   return position.y + rect.height;
+}
+
+float Ball::getCenterY()
+{
+  return (this->getTop() + this->getBottom()) / 2;
 }
 
 void Ball::tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window)
