@@ -12,7 +12,7 @@ class Game : Tickable
 
   private:
 
-    std::vector<Tickable*> tickables;
+    std::vector<Tickable*> m_tickables;
 
   public:
 

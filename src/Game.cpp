@@ -12,19 +12,19 @@ Game::Game()
 
 Game::~Game()
 {
-  for (Tickable* tickable : this->tickables) {
+  for (Tickable* tickable : this->m_tickables) {
     delete tickable;
   }
 }
 
 void Game::add(Tickable* tickable)
 {
-  this->tickables.push_back(tickable);
+  this->m_tickables.push_back(tickable);
 }
 
 void Game::tick(int frame, sf::Event& event, sf::RenderWindow& window)
 {
-  for (Tickable* tickable : this->tickables) {
+  for (Tickable* tickable : this->m_tickables) {
     tickable->tick(frame, event, window);
   }
 }
