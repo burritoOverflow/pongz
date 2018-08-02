@@ -7,9 +7,9 @@
 Player::Player(bool isComputer)
 : m_isComputer(isComputer)
 {
-  float rectWidth = 30.0f;
+  float rectWidth = 20.0f;
   float rectHeight = 150.0f;
-  float padding = 10.0f;
+  float padding = 3.0f;
 
   this->m_shape.setSize(sf::Vector2f(rectWidth, rectHeight));
   this->m_shape.setFillColor(sf::Color::Black);
@@ -20,16 +20,39 @@ Player::Player(bool isComputer)
   }
 }
 
-void Player::tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window)
+bool Player::isComputer()
 {
+  return this->m_isComputer;
+}
 
+float Player::getLeft()
+{
+  sf::FloatRect rect = this->m_shape.getGlobalBounds();
+  return rect.left;
+}
+
+float Player::getRight()
+{
   sf::Vector2f position = this->m_shape.getPosition();
   sf::FloatRect rect = this->m_shape.getGlobalBounds();
+  return rect.left + rect.width;
+}
 
-  float left = rect.left;
-  float right = rect.left + rect.width;
-  float top = position.y;
-  float bottom = position.y + rect.height;
+float Player::getTop()
+{
+  sf::Vector2f position = this->m_shape.getPosition();
+  return position.y;
+}
+
+float Player::getBottom()
+{
+  sf::Vector2f position = this->m_shape.getPosition();
+  sf::FloatRect rect = this->m_shape.getGlobalBounds();
+  return position.y + rect.height;
+}
+
+void Player::tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window)
+{
 
   if (this->m_isComputer)
   {

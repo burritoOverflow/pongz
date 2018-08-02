@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "./Tickable.h"
+#include "./Ball.h"
 #include "./Player.h"
 #include "./Object.h"
 

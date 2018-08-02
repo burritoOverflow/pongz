@@ -18,6 +18,10 @@ class Ball : public Tickable, public Object
   public:
 
     Ball();
+    float getLeft();
+    float getRight();
+    float getTop();
+    float getBottom();
 
     // Tickable
     void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window);
