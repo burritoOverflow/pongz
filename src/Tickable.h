@@ -3,13 +3,12 @@
 
 #include <SFML/Graphics.hpp>
 
-class Tickable
-{
-
-  public:
-
-    virtual void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window) = 0;
-
+class Tickable {
+ public:
+  Tickable() = default;
+  virtual ~Tickable(){};
+  virtual void tick(void* pGame, int frame, sf::Event& event,
+                    sf::RenderWindow& window) = 0;
 };
 
 #endif

@@ -1,37 +1,32 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
 
-#include <SFML/Graphics.hpp>
+#include "Ball.h"
+#include "Object.h"
+#include "Player.h"
+#include "Tickable.h"
 
-#include "./Tickable.h"
-#include "./Ball.h"
-#include "./Player.h"
-#include "./Object.h"
+class Game : public Tickable, public Object {
+ private:
+  std::vector<Tickable*> m_tickables;
 
-class Game : public Tickable, public Object
-{
+ public:
+  Game();
+  ~Game();
+  void add(Tickable* tickable);
+  void defaultInit();
+  Ball* getBall();
+  std::vector<Player*> getPlayers();
 
-  private:
+  // Tickable
+  void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window);
 
-    std::vector<Tickable*> m_tickables;
-
-  public:
-
-    Game();
-    ~Game();
-    void add(Tickable* tickable);
-    Ball* getBall();
-    void getPlayers(std::vector<Player*>& players);
-
-    // Tickable
-    void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window); 
-
-    // Object
-    std::string toString();
-
+  // Object
+  std::string toString();
 };
 
 #endif

@@ -3,33 +3,30 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "./Tickable.h"
-#include "./Object.h"
+#include "Object.h"
+#include "Tickable.h"
 
-class Ball : public Tickable, public Object
-{
+class Ball : public Tickable, public Object {
+ private:
+  sf::CircleShape m_shape;
+  float m_velocityX;
+  float m_velocityY;
 
-  private:
+ public:
+  Ball();
+  ~Ball() override = default;
+  float getLeft();
+  float getRight();
+  float getTop();
+  float getBottom();
+  float getCenterY();
 
-    sf::CircleShape m_shape;
-    float m_velocityX;
-    float m_velocityY;
+  // Tickable
+  void tick(void* pGame, int frame, sf::Event& event,
+            sf::RenderWindow& window) override;
 
-  public:
-
-    Ball();
-    float getLeft();
-    float getRight();
-    float getTop();
-    float getBottom();
-    float getCenterY();
-
-    // Tickable
-    void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window);
-
-    // Object
-    std::string toString();
-
+  // Object
+  std::string toString() override;
 };
 
 #endif

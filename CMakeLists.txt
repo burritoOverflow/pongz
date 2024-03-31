@@ -1,9 +1,13 @@
+cmake_minimum_required (VERSION 3.25)
+project(basic_pong)
 
-cmake_minimum_required (VERSION 2.6)
-project(PONGZ)
-set(SOURCE src/main.cpp src/Game.cpp src/Ball.cpp src/Player.cpp)
-set(HEADERS src/Tickable.h src/Object.h src/Game.h src/Ball.h src/Player.h)
-add_executable(pongz ${SOURCE} ${HEADERS})
+file(GLOB SOURCES src/*.cpp)
+file(GLOB HEADERS HEADERS src/*.h)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-target_link_libraries(pongz sfml-graphics sfml-window sfml-system)
-target_compile_definitions(pongz PRIVATE WINDOW_WIDTH=800 WINDOW_HEIGHT=600 WINDOW_TITLE="pongz")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+add_executable(basic_pong ${SOURCES} ${HEADERS})
+
+target_link_libraries(basic_pong sfml-graphics sfml-window sfml-system)
+target_compile_definitions(basic_pong PRIVATE WINDOW_WIDTH=1920 WINDOW_HEIGHT=1080 WINDOW_TITLE="Basic Pong")

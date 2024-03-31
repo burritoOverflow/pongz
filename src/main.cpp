@@ -1,49 +1,37 @@
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include <SFML/Graphics.hpp>
+#include "Ball.h"
+#include "Game.h"
+#include "Player.h"
+#include "Tickable.h"
 
-#include "./Tickable.h"
-#include "./Game.h"
-#include "./Ball.h"
-#include "./Player.h"
+int main() {
+  sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
+                          WINDOW_TITLE);
+  Game game;
+  game.defaultInit();
 
-int main()
-{
+  void *pGame = &game;
+  int frame = 0;
 
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+  while (window.isOpen()) {
+    sf::Event event;
 
-    Game game;
-    game.add((Tickable*) new Ball());
-    game.add((Tickable*) new Player(false));
-    game.add((Tickable*) new Player(true));
-
-    void *pGame = &game;
-
-    int frame = 0;
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
-            else if (event.type == sf::Event::KeyPressed)
-            {
-                if (event.key.code == sf::Keyboard::Escape)
-                {
-                    window.close();
-                }
-            }
+    while (window.pollEvent(event)) {
+      if (event.type == sf::Event::Closed) {
+        window.close();
+      } else if (event.type == sf::Event::KeyPressed) {
+        if (event.key.code == sf::Keyboard::Escape) {
+          window.close();
         }
-
-        window.clear(sf::Color::White);
-        game.tick(pGame, frame++, event, window);
-        window.display();
+      }
     }
 
-    return 0;
+    window.clear(sf::Color::White);
+    game.tick(pGame, frame++, event, window);
+    window.display();
+  }
+
+  return 0;
 }

@@ -3,35 +3,33 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "./Tickable.h"
-#include "./Object.h"
+#include "Object.h"
+#include "Tickable.h"
 
-class Player : public Tickable, public Object
-{
+class Player : public Tickable, public Object {
+ private:
+  sf::RectangleShape m_shape;
+  bool m_isComputer;
+  float m_velocityY;
 
-  private:
+ public:
+  Player() = default;
+  ~Player() override = default;
+  Player(bool isComputer);
+  bool isComputer() const;
+  float getLeft();
+  float getRight();
+  float getTop();
+  float getBottom();
+  float getCenterY();
+  float getVelocityY();
 
-    sf::RectangleShape m_shape;
-    bool m_isComputer;
-    float m_velocityY;
+  // Tickable
+  void tick(void* pGame, int frame, sf::Event& event,
+            sf::RenderWindow& window) override;
 
-  public:
-
-    Player(bool isComputer);
-    bool isComputer();
-    float getLeft();
-    float getRight();
-    float getTop();
-    float getBottom();
-    float getCenterY();
-    float getVelocityY();
-
-    // Tickable
-    void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window);
-    
-    // Object
-    std::string toString();
-
+  // Object
+  std::string toString() override;
 };
 
 #endif
