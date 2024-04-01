@@ -1,7 +1,6 @@
-#include "./Game.h"
+#include "Game.h"
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include <vector>
 
 #include "Object.h"
@@ -26,13 +25,13 @@ void Game::add(Tickable* tickable) { this->m_tickables.push_back(tickable); }
 
 Ball* Game::getBall() {
   for (Tickable* tickable : this->m_tickables) {
-    if (Object* obj = dynamic_cast<Object*>(tickable)) {
+    if (auto* obj = dynamic_cast<Object*>(tickable)) {
       if (obj->toString() == "Ball") {
         return (Ball*)obj;
       }
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 std::vector<Player*> Game::getPlayers() {

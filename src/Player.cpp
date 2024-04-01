@@ -11,11 +11,7 @@
 // y-axis bounds
 static constexpr uint8_t PADDING = 5;
 
-Player::Player(bool isComputer) : m_isComputer(isComputer) {
-    float rectWidth = 20.0f;
-    float rectHeight = 150.0f;
-    float padding = 3.0f;
-
+Player::Player(const bool isComputer) : m_isComputer(isComputer) {
     this->m_shape.setSize(sf::Vector2f(rectWidth, rectHeight));
     this->m_shape.setFillColor(sf::Color::Black);
 
@@ -28,25 +24,24 @@ Player::Player(bool isComputer) : m_isComputer(isComputer) {
 
 bool Player::isComputer() const { return this->m_isComputer; }
 
-float Player::getLeft() {
+float Player::getLeft() const {
     sf::FloatRect rect = this->m_shape.getGlobalBounds();
     return rect.left;
 }
 
-float Player::getRight() {
-    sf::Vector2f position = this->m_shape.getPosition();
-    sf::FloatRect rect = this->m_shape.getGlobalBounds();
+float Player::getRight() const {
+    const sf::FloatRect rect = this->m_shape.getGlobalBounds();
     return rect.left + rect.width;
 }
 
-float Player::getTop() {
-    sf::Vector2f position = this->m_shape.getPosition();
+float Player::getTop() const {
+    const sf::Vector2f position = this->m_shape.getPosition();
     return position.y;
 }
 
-float Player::getBottom() {
-    sf::Vector2f position = this->m_shape.getPosition();
-    sf::FloatRect rect = this->m_shape.getGlobalBounds();
+float Player::getBottom() const {
+    const sf::Vector2f position = this->m_shape.getPosition();
+    const sf::FloatRect rect = this->m_shape.getGlobalBounds();
     return position.y + rect.height;
 }
 
@@ -58,7 +53,7 @@ static bool isUpKey(const sf::Keyboard::Key &code) {
     return code == sf::Keyboard::Up || code == sf::Keyboard::K;
 }
 
-float Player::getCenterY() { return (this->getTop() + this->getBottom()) / 2; }
+float Player::getCenterY() const { return (this->getTop() + this->getBottom()) / 2; }
 
 void Player::tick(void *pGame, int frame, sf::Event &event,
                   sf::RenderWindow &window) {
@@ -76,10 +71,12 @@ void Player::tick(void *pGame, int frame, sf::Event &event,
             // @TODO for some reason alphanumeric keys are not functioning for these events
             const auto shapePosition = this->m_shape.getPosition();
             if (isUpKey(event.key.code) && shapePosition.y > 0 + PADDING) {
+                // move up
                 this->m_velocityY = -0.1f;
             } else if (isDownKey(event.key.code) &&
                        (shapePosition.y + this->m_shape.getSize().y + PADDING) <
                        WINDOW_HEIGHT) {
+                // move down
                 this->m_velocityY = 0.1f;
             }
         }

@@ -1,10 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
-#include "Ball.h"
 #include "Game.h"
-#include "Player.h"
-#include "Tickable.h"
 
 int main() {
   sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),

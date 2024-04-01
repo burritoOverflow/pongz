@@ -11,22 +11,27 @@
 #include "Tickable.h"
 
 class Game : public Tickable, public Object {
- private:
-  std::vector<Tickable*> m_tickables;
+private:
+    std::vector<Tickable *> m_tickables;
 
- public:
-  Game();
-  ~Game();
-  void add(Tickable* tickable);
-  void defaultInit();
-  Ball* getBall();
-  std::vector<Player*> getPlayers();
+public:
+    Game();
 
-  // Tickable
-  void tick(void* pGame, int frame, sf::Event& event, sf::RenderWindow& window);
+    ~Game();
 
-  // Object
-  std::string toString();
+    void add(Tickable *tickable);
+
+    void defaultInit();
+
+    Ball *getBall();
+
+    std::vector<Player *> getPlayers();
+
+    // Tickable
+    void tick(void *pGame, int frame, sf::Event &event, sf::RenderWindow &window);
+
+    // Object
+    std::string toString();
 };
 
 #endif
